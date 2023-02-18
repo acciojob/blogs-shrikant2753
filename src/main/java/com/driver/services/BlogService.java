@@ -23,7 +23,7 @@ public class BlogService {
 
     public Blog createAndReturnBlog(Integer userId, String title, String content) {
         //create a blog at the current time
-
+        return null;
     }
 
     public void deleteBlog(int blogId){
