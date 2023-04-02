@@ -13,11 +13,11 @@ public class Image {
     private String dimensions;
 
     public Image(){}
-    public Image(int id, String description, String dimensions) {
-        this.id = id;
-        this.description = description;
-        this.dimensions = dimensions;
-    }
+
+    //it is a child wrt blog
+    @ManyToOne
+    @JoinColumn
+    private Blog blog;
 
     public int getId() {
         return id;
@@ -41,5 +41,13 @@ public class Image {
 
     public void setDimensions(String dimensions) {
         this.dimensions = dimensions;
+    }
+
+    public Blog getBlog() {
+        return blog;
+    }
+
+    public void setBlog(Blog blog) {
+        this.blog = blog;
     }
 }

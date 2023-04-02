@@ -1,6 +1,8 @@
 package com.driver.models;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 @Table
@@ -15,13 +17,10 @@ public class User{
     private String lastName;
 
     public User(){}
-    public User(int id, String username, String password, String firstName, String lastName) {
-        this.id = id;
-        this.username = username;
-        this.password = password;
-        this.firstName = firstName;
-        this.lastName = lastName;
-    }
+
+    //it is a parent wrt blog
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Blog> blogList = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -61,5 +60,13 @@ public class User{
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
+    }
+
+    public List<Blog> getBlogList() {
+        return blogList;
+    }
+
+    public void setBlogList(List<Blog> blogList) {
+        this.blogList = blogList;
     }
 }

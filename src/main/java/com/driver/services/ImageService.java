@@ -17,10 +17,31 @@ public class ImageService {
 
     public Image addImage(Integer blogId, String description, String dimensions){
         //add an image to the blog
-        return null;
+        Image image = new Image();
+        Blog blog = blogRepository2.findById(blogId).get();
+
+        image.setDescription(description);
+        image.setDimensions(dimensions);
+        image.setBlog(blog);
+        blog.getImageList().add(image);
+        blogRepository2.save(blog);
+
+        return image;
     }
 
     public void deleteImage(Integer id){
+        Image image = imageRepository2.findById(id).get();
+        imageRepository2.deleteById(id);
+        Blog blog = blogRepository2.findById(id).get();
+        List<Image> imageList = blog.getImageList();
+
+        for(Image image1 : imageList){
+            if(image1.equals(image)){
+                imageList.remove(image1);
+                break;
+            }
+        }
+        blogRepository2.save(blog);
         return;
     }
 
