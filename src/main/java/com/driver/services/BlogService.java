@@ -29,7 +29,7 @@ public class BlogService {
 
         blog.setTitle(title);
         blog.setContent(content);
-        //user.getBlogList().add(blog);
+        blog.setPubDate(new Date());
 
         List<Blog> currentBlog = user.getBlogList();
         currentBlog.add(blog);
