@@ -46,7 +46,7 @@ public class ImageService {
             if(dimension.charAt(i)=='X'){
                 xi=num;
                 num=0;
-                continue;;
+                continue;
             }
             num *= 10;
             num += (dimension.charAt(i)-'0');
@@ -58,7 +58,7 @@ public class ImageService {
             if(screenDimensions.charAt(i)=='X'){
                 xs=num;
                 num=0;
-                continue;;
+                continue;
             }
             num *= 10;
             num += (screenDimensions.charAt(i)-'0');
