@@ -25,9 +25,10 @@ public class BlogService {
         Blog blog =new Blog();
         User user = userRepository1.findById(userId).get();
 
+        blog.setUser(user);
+
         blog.setTitle(title);
         blog.setContent(content);
-        blog.setUser(user);
         user.getBlogList().add(blog);
         userRepository1.save(user);
 
@@ -36,11 +37,6 @@ public class BlogService {
 
     public void deleteBlog(int blogId){
         //delete blog and corresponding images
-        Blog blog = blogRepository1.findById(blogId).get();
-        List<Image>imageList = blog.getImageList();
-//        for(Image image : imageList){
-//            imageR
-//        }
         blogRepository1.deleteById(blogId);
     }
 }

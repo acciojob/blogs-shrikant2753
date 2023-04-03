@@ -30,23 +30,43 @@ public class ImageService {
     }
 
     public void deleteImage(Integer id){
-        Image image = imageRepository2.findById(id).get();
         imageRepository2.deleteById(id);
-        Blog blog = blogRepository2.findById(id).get();
-        List<Image> imageList = blog.getImageList();
-
-        for(Image image1 : imageList){
-            if(image1.equals(image)){
-                imageList.remove(image1);
-                break;
-            }
-        }
-        blogRepository2.save(blog);
-        return;
     }
 
     public int countImagesInScreen(Integer id, String screenDimensions) {
         //Find the number of images of given dimensions that can fit in a screen having `screenDimensions`
-        return 0;
+        Image image = imageRepository2.findById(id).get();
+        String dimension = image.getDimensions();
+
+        int xi=0, yi=0;
+        int xs=0, ys=0;
+        int num=0;
+
+        for(int i=0; i<dimension.length(); i++){
+            if(dimension.charAt(i)=='X'){
+                xi=num;
+                num=0;
+                continue;;
+            }
+            num *= 10;
+            num += (dimension.charAt(i)-'0');
+        }
+        yi=num;
+
+        num=0;
+        for(int i=0; i<screenDimensions.length(); i++){
+            if(screenDimensions.charAt(i)=='X'){
+                xs=num;
+                num=0;
+                continue;;
+            }
+            num *= 10;
+            num += (screenDimensions.charAt(i)-'0');
+        }
+        ys=num;
+
+        int ans = (int) (Math.floor((new Double(xs))/(new Double(xi))) * Math.floor((new Double(ys))/(new Double(yi))));
+
+        return ans;
     }
 }
