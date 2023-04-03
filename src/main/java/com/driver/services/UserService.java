@@ -32,6 +32,6 @@ public class UserService {
         User user = userRepository3.findById(id).get();
         user.setPassword(password);
         userRepository3.save(user);
-        return null;
+        return user;
     }
 }

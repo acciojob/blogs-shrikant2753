@@ -29,7 +29,12 @@ public class BlogService {
 
         blog.setTitle(title);
         blog.setContent(content);
-        user.getBlogList().add(blog);
+        //user.getBlogList().add(blog);
+
+        List<Blog> currentBlog = user.getBlogList();
+        currentBlog.add(blog);
+        user.setBlogList(currentBlog);
+
         userRepository1.save(user);
 
         return blog;
